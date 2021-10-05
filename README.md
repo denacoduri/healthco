@@ -260,5 +260,3 @@ FROM health.user_logs
 WHERE measure = 'blood_pressure';
 ```
 <img width="453" alt="Debug Q9" src="https://user-images.githubusercontent.com/84096042/136072495-5ee9800f-f423-4993-ba54-e4527fc63310.png">
-
-
