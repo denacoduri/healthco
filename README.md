@@ -93,12 +93,17 @@ SELECT
   PERCENTILE_CONTINUOUS(0.5) WITHIN GROUP (ORDER BY id) AS median_value
 FROM user_measure_count;
 ```
+<img width="658" alt="Screen Shot 2021-10-05 at 12 23 07 PM" src="https://user-images.githubusercontent.com/84096042/136079056-596ff71f-dc16-417b-b7fe-8463d682a17e.png">
 
 - Debugged Code:
 
+```sql
+  SELECT
+  PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY measure_count) AS median_measure_count
+FROM user_measure_count;
+  ```
+
 <img width="206" alt="Debug Q3" src="https://user-images.githubusercontent.com/84096042/136072387-5e724988-e558-422b-a7dc-673b5f96ec72.png">
-
-
 
 
 ### 4. How many users have 3 or more measurements?
@@ -110,8 +115,18 @@ SELECT
 FROM user_measure_count
 HAVING measure >= 3;
 ```
+<img width="333" alt="Screen Shot 2021-10-05 at 2 11 05 PM" src="https://user-images.githubusercontent.com/84096042/136079171-82faa897-49cd-4c08-8903-38b38950721e.png">
+
 
 - Debugged Code:
+
+```sql
+SELECT
+  COUNT(*)
+FROM user_measure_count
+WHERE measure_count >= 3;
+```
+
 <img width="152" alt="Debug Q4" src="https://user-images.githubusercontent.com/84096042/136072402-7e18c839-2c76-4b94-a44c-bca286ffd99f.png">
 
 
@@ -124,8 +139,17 @@ SELECT
 FROM user_measure_count
 WHERE measure_count >= 1000;
 ```
+<img width="453" alt="Screen Shot 2021-10-05 at 2 11 44 PM" src="https://user-images.githubusercontent.com/84096042/136079249-7828f36e-60d1-4b27-b366-d028f23f7ce2.png">
+
 
 - Debugged Code:
+
+```sql
+SELECT
+  COUNT(*)
+FROM user_measure_count
+WHERE measure_count >= 1000;
+```
 
 <img width="151" alt="Debug Q5" src="https://user-images.githubusercontent.com/84096042/136072438-056da0b5-65c5-4941-b696-0c67645a1a9e.png">
 
@@ -141,7 +165,17 @@ SELECT
 FROM health.user_logs
 WHERE measure is 'blood_sugar';
 ```
+<img width="340" alt="Screen Shot 2021-10-05 at 2 12 14 PM" src="https://user-images.githubusercontent.com/84096042/136079329-9448ca2a-799e-401d-88be-338d6cea4dc8.png">
+
+
 - Debugged Code:
+
+```sql
+SELECT
+  COUNT(DISTINCT id)
+FROM health.user_logs
+WHERE measure = 'blood_glucose';
+```
 <img width="155" alt="Debug Q6" src="https://user-images.githubusercontent.com/84096042/136072454-03957475-0187-4a50-9cb5-3c7d90a3c4fe.png">
 
 
@@ -154,8 +188,17 @@ SELECT
 FROM user_measure_count
 WHERE COUNT(DISTINCT measures) >= 2;
 ```
+<img width="341" alt="Screen Shot 2021-10-05 at 2 12 51 PM" src="https://user-images.githubusercontent.com/84096042/136079415-0c774533-3740-43f2-8181-84faef0bbec9.png">
 
 - Debugged Code:
+
+```sql
+SELECT
+  COUNT(*)
+FROM user_measure_count
+WHERE unique_measures >= 2;
+```
+
 <img width="176" alt="Debug Q7" src="https://user-images.githubusercontent.com/84096042/136072463-5a7610d1-ae36-418e-b8d9-6458fc7c1dc7.png">
 
 
@@ -167,8 +210,18 @@ SELECT
 FROM usr_measure_count
 WHERE unique_measures = 3;
 ```
+<img width="438" alt="Screen Shot 2021-10-05 at 2 13 29 PM" src="https://user-images.githubusercontent.com/84096042/136079474-fb5c5593-1ba5-4ddd-bd90-ccc9a9dbfc2e.png">
+
 
 - Debugged Code:
+
+```sql
+SELECT
+  COUNT(*)
+FROM user_measure_count
+WHERE unique_measures = 3;
+```
+
 <img width="146" alt="Debug Q8" src="https://user-images.githubusercontent.com/84096042/136072474-6cbccc4e-488b-43b3-860a-23d2754da387.png">
 
 
@@ -183,7 +236,20 @@ SELECT
 FROM health.user_logs
 WHERE measure is blood_pressure;
 ```
+
+<img width="270" alt="Screen Shot 2021-10-05 at 2 14 17 PM" src="https://user-images.githubusercontent.com/84096042/136079591-d8865d53-a4f4-4e7d-8458-cc1090e1f9e0.png">
+
+
+
 - Debugged Code:
+
+```sql
+SELECT
+  PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY diastolic) AS median_diastolic,
+  PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY systolic) AS median_systolic
+FROM health.user_logs
+WHERE measure = 'blood_pressure';
+```
 <img width="453" alt="Debug Q9" src="https://user-images.githubusercontent.com/84096042/136072495-5ee9800f-f423-4993-ba54-e4527fc63310.png">
 
 
