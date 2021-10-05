@@ -134,7 +134,7 @@ HAVING measure >= 3;
 ```
 <img width="333" alt="Screen Shot 2021-10-05 at 2 11 05 PM" src="https://user-images.githubusercontent.com/84096042/136079171-82faa897-49cd-4c08-8903-38b38950721e.png">
 
-The column `measure` does not exist. We need to use `measure_count`.
+The column `measure` does not exist. We need to use `measure_count`. Also, the `HAVING` clause needs to be replaced with `WHERE` since we are filtering records from a table and not from a group.
 
 
 - Debugged Code:
