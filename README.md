@@ -95,6 +95,8 @@ FROM user_measure_count;
 ```
 <img width="658" alt="Screen Shot 2021-10-05 at 12 23 07 PM" src="https://user-images.githubusercontent.com/84096042/136079056-596ff71f-dc16-417b-b7fe-8463d682a17e.png">
 
+Here, ```PERCENTILE_CONTINUOUS``` does not exist as a function in SQL. We need to use `PERCENTILE_CONT` to find the 50th percentile AKA the median. Also, `measure_count` should come after `ORDER BY`, since we are finding the median of the measure counts.
+
 - Debugged Code:
 
 ```sql
@@ -116,6 +118,8 @@ FROM user_measure_count
 HAVING measure >= 3;
 ```
 <img width="333" alt="Screen Shot 2021-10-05 at 2 11 05 PM" src="https://user-images.githubusercontent.com/84096042/136079171-82faa897-49cd-4c08-8903-38b38950721e.png">
+
+The column `measure` does not exist. We need to use `measure_count`.
 
 
 - Debugged Code:
@@ -141,6 +145,7 @@ WHERE measure_count >= 1000;
 ```
 <img width="453" alt="Screen Shot 2021-10-05 at 2 11 44 PM" src="https://user-images.githubusercontent.com/84096042/136079249-7828f36e-60d1-4b27-b366-d028f23f7ce2.png">
 
+Here, we need to use `COUNT` instead of `SUM` to count the rows. It is ok here to use `COUNT(id)` or `COUNT(*)`.
 
 - Debugged Code:
 
@@ -167,6 +172,7 @@ WHERE measure is 'blood_sugar';
 ```
 <img width="340" alt="Screen Shot 2021-10-05 at 2 12 14 PM" src="https://user-images.githubusercontent.com/84096042/136079329-9448ca2a-799e-401d-88be-338d6cea4dc8.png">
 
+```blood_sugar``` does not exist as one of the measures in our data. The correct measure is ```blood_glucose```. Parentheses are required after ```COUNT```.
 
 - Debugged Code:
 
@@ -190,6 +196,8 @@ WHERE COUNT(DISTINCT measures) >= 2;
 ```
 <img width="341" alt="Screen Shot 2021-10-05 at 2 12 51 PM" src="https://user-images.githubusercontent.com/84096042/136079415-0c774533-3740-43f2-8181-84faef0bbec9.png">
 
+```measures``` does not exist as a column heading. There is already a column for `unique_measures` in our temporary table that we can use.
+
 - Debugged Code:
 
 ```sql
@@ -212,6 +220,7 @@ WHERE unique_measures = 3;
 ```
 <img width="438" alt="Screen Shot 2021-10-05 at 2 13 29 PM" src="https://user-images.githubusercontent.com/84096042/136079474-fb5c5593-1ba5-4ddd-bd90-ccc9a9dbfc2e.png">
 
+This simply has a spelling error. ```usr_measure_count``` should be `user_measure_count`.
 
 - Debugged Code:
 
@@ -239,7 +248,7 @@ WHERE measure is blood_pressure;
 
 <img width="270" alt="Screen Shot 2021-10-05 at 2 14 17 PM" src="https://user-images.githubusercontent.com/84096042/136079591-d8865d53-a4f4-4e7d-8458-cc1090e1f9e0.png">
 
-
+`GROUP` needs to be used after `WITHIN` here, and `blood_pressure` should be in parentheses. The word "is" should be replaced with `=`.
 
 - Debugged Code:
 
