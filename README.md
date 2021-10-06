@@ -108,7 +108,8 @@ SELECT
   PERCENTILE_CONTINUOUS(0.5) WITHIN GROUP (ORDER BY id) AS median_value
 FROM user_measure_count;
 ```
-<img width="658" alt="Screen Shot 2021-10-05 at 12 23 07 PM" src="https://user-images.githubusercontent.com/84096042/136079056-596ff71f-dc16-417b-b7fe-8463d682a17e.png">
+
+<img width="740" alt="Screen Shot 2021-10-06 at 3 23 42 PM" src="https://user-images.githubusercontent.com/84096042/136269889-07100758-071e-4772-96c8-9ac01de12c2b.png">
 
 Here, ```PERCENTILE_CONTINUOUS``` does not exist as a function in SQL. We need to use `PERCENTILE_CONT` to find the 50th percentile AKA the median. Also, `measure_count` should come after `ORDER BY`, since we are finding the median of the measure counts.
 
